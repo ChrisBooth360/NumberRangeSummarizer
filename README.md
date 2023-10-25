@@ -60,6 +60,15 @@ Here is the file structure for this solution:
 
 ### Step 3: Writing Test Cases
 
+Following the principles of TDD, the next step is to write a series of unit tests
+that will test the methods within the implementation class 
+NumberRangerSummarizerImpl. Once the logic is writtern, this will ensure 
+that the implemented logic functions correctly and that any future changes 
+or updates can be made with confidence in the code's stability.
+
+JUnit is used as the testing framework in this assessment.
+
+### Step 4: Writing the logic
 
 
 
