@@ -106,11 +106,13 @@ public class NumberRangeSummarizerImplTest {
 
     }
 
-
-    // This test case checks the summarizeCollection() method to ensure it correctly summarizes
-    // a Collection on integers.
+    /**
+     The following unit tests ensure the collect() method can handle various test cases.
+     */
+    // Ensures the summarizeCollection() method correctly summarizes a Collection of integers that contain ranges
+    // and single integers.
     @Test
-    public void testSummarizeCollection(){
+    public void testSummarizeCollectionRangesAndSingleIntegers(){
 
         // Define the Collection of integers to be summarized.
         testRange.add(1);
@@ -123,6 +125,94 @@ public class NumberRangeSummarizerImplTest {
         String result = summarizer.summarizeCollection(testRange);
         assertEquals("1-3, 6, 9", result);
 
+    }
+
+    // Ensures the summarizeCollection() can summarize a range at the end of a Collection.
+    @Test
+    public void testSummarizeCollectionRangeAtEnd(){
+
+        testRange.add(1);
+        testRange.add(3);
+        testRange.add(7);
+        testRange.add(8);
+        testRange.add(9);
+
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("1, 3, 7-9", result);
 
     }
+
+    // Ensures the summarizeCollection() can summarize a Collection of only ranges.
+    @Test
+    public void testSummarizeCollectionOnlyRanges(){
+
+        testRange.add(1);
+        testRange.add(2);
+        testRange.add(5);
+        testRange.add(6);
+        testRange.add(7);
+
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("1-2, 5-7", result);
+
+    }
+
+    // Ensures the summarizeCollection() can 'summarize' a Collection of only non-sequential numbers.
+    @Test
+    public void testSummarizeCollectionNoSequentialIntegers(){
+
+        testRange.add(0);
+        testRange.add(3);
+        testRange.add(5);
+        testRange.add(7);
+
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("0, 3, 5, 7", result);
+
+    }
+
+    // Ensures the summarizeCollection() method can 'summarize' a single integer.
+    @Test
+    public void testSummarizeCollectionSingleInteger(){
+
+        testRange.add(1);
+
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("1", result);
+
+    }
+
+    // Ensures the summarizeCollection() method can handle negative integers.
+    @Test
+    public void testSummarizeCollectionNegativeIntegers(){
+        testRange.add(-1);
+        testRange.add(0);
+        testRange.add(1);
+        testRange.add(3);
+
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("-1-1, 3", result);
+    }
+
+    // Ensures the summarizeCollection() method returns an empty String if the Collection is empty.
+    @Test
+    public void testSummarizeCollectionEmptyInput(){
+        String result = summarizer.summarizeCollection(testRange);
+        assertEquals("", result);
+    }
+
+    // Ensures the summarizeCollection() can take an unordered Collection and return an ordered summarized range.
+    @Test
+    public void testSummarizeCollectionNotInOrder(){
+        testRange.add(2);
+        testRange.add(1);
+        testRange.add(6);
+        testRange.add(3);
+
+        String result = summarizer.summarizeCollection(testRange);
+
+        assertEquals("1-3, 6", result);
+
+    }
+
 }

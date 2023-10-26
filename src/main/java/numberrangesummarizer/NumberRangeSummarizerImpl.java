@@ -2,6 +2,7 @@ package numberrangesummarizer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 // This class implements the NumberRangeSummarizer
@@ -49,52 +50,61 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
      */
     @Override
     public String summarizeCollection(Collection<Integer> input) {
+
+        // Checks if the collection is empty. If true, it returns an empty string.
+        if(input.isEmpty()){
+            return "";
+        }
+
         // Create a List from the input Collection to allow indexed access.
         List<Integer> integerList = new ArrayList<>(input);
+        // Makes sure the list is sorted.
+        Collections.sort(integerList);
 
-        // Initialize two Lists, one to store all the ranges and one to store the current range that will
-        // track sequential numbers.
-        List<String> ranges = new ArrayList<>();
-        List<Integer> currentRange = new ArrayList<>();
+        // Declare a StringBuilder to store all the ranges.
+        StringBuilder ranges = new StringBuilder(); // Using a StringBuilder is more efficient than using an ArrayList.
 
-        // Initialize the currentRange with the first integer in the List.
-        currentRange.add(integerList.get(0));
+        // Initialize two integers to keep track of the start and end of a range.
+        // Both 'startRange' and 'endRange' are initially set to the first element of 'integerList'.
+        // This approach is more efficient than declaring an ArrayList and clearing it in each iteration of the loop.
+        int startRange = integerList.get(0);
+        int endRange = integerList.get(0);
 
         // A for loop iterates over the integerList, starting from the second element.
         for(int i = 1; i < integerList.size(); i++){
 
             // Check if the current number is one greater than the previous number.
             if(integerList.get(i) == integerList.get(i - 1) + 1){
-                // Add the current number to the currentRange.
-                currentRange.add(integerList.get(i));
+                // Update 'endRange' to store the current element of the ArrayList.
+                endRange = integerList.get(i);
             } else {
-                // Check if the length of the currentRange is greater than 1.
-                if(currentRange.size() > 1){
-                    // Add the first and last numbers of currentRange to ranges, separated by a dash ('-').
-                    ranges.add(currentRange.get(0) + "-" + currentRange.get(currentRange.size() - 1));
+                // Check if the startRange integer is less than the endRange integer.
+                if(startRange < endRange){
+                    // Append the startRange and endRange integers to ranges, separated by a dash ('-').
+                    ranges.append(startRange + "-" + endRange);
                 } else {
-                    // Add the first number of currentRange to ranges.
-                    ranges.add(currentRange.get(0).toString());
+                    // Add the current element to ranges.
+                    ranges.append(integerList.get(i - 1));
                 }
-
-                // As the current number is not sequential from the previous number, the currentRange is cleared
-                // and the current number added to currentRange.
-                currentRange.clear();
-                currentRange.add(integerList.get(i));
+                // As the current element is not sequential from the previous number, a ", " is appended to ranges.
+                ranges.append(", ");
+                // The startRange is updated to the current integer.
+                startRange = integerList.get(i);
             }
         }
 
-        // As the above for loop will not be able to check the final number in the integerList,
-        // a final if statement will check if the currentRange length is greater than 1.
-        if(currentRange.size() > 1){
-            // Add the first and last numbers of currentRange to ranges, separated by a dash ('-').
-            ranges.add(currentRange.get(0) + "-" + currentRange.get(currentRange.size() - 1));
+        // As the above for loop will not be able to check the final element in the integerList,
+        // a final if statement will check if the startRange integer is less than the endRange integer.
+        if(startRange < endRange){
+            // Append the startRange and endRange integers to ranges, separated by a dash ('-').
+            ranges.append(startRange + "-" + endRange);
         } else {
-            // Add the first number of currentRange to ranges.
-            ranges.add(currentRange.get(0).toString());
+            // Add the final element to ranges.
+            ranges.append(integerList.get(integerList.size() -1));
         }
 
         // The List of strings in ranges is joined into one String with the delimiter ", ".
-        return String.join(", ", ranges);
+        return ranges.toString();
     }
+
 }
