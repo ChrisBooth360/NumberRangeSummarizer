@@ -1,9 +1,6 @@
 package numberrangesummarizer;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 // This class implements the NumberRangeSummarizer
 public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
@@ -20,8 +17,8 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
         // The numbers in the String are split into an array using the delimiter "," followed by zero or more spaces.
         String[] splitNumberList = input.split(",\\s*");
 
-        // A new ArrayList is declared.
-        Collection<Integer> numbersList = new ArrayList<>();
+        // A new HashSet is declared - this will help get rid of duplicates.
+        Collection<Integer> numbersList = new HashSet<>();
 
         // An enhanced for loop iterates through the String array, converts them into integers
         // and adds them to the ArrayList.
@@ -38,6 +35,7 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
             }
         }
 
+        // Return the Collection of integers
         return numbersList;
 
     }

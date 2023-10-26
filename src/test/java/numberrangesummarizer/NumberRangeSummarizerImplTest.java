@@ -3,8 +3,8 @@ package numberrangesummarizer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,7 +18,7 @@ public class NumberRangeSummarizerImplTest {
     @BeforeEach
     public void setUp(){
         summarizer = new NumberRangeSummarizerImpl();
-        testRange = new ArrayList<>();
+        testRange = new HashSet<>();
     }
 
     /**
@@ -104,6 +104,20 @@ public class NumberRangeSummarizerImplTest {
 
         assertEquals(testRange, result);
 
+    }
+
+    // Ensures the collect() method does not return a Collection with duplicates.
+    @Test
+    public void testCollectDuplicates(){
+
+        // A Collection with no duplicates is created.
+        testRange.add(1);
+        testRange.add(2);
+
+        // A String is parsed with duplicate numbers.
+        Collection<Integer> result = summarizer.collect("1,1,2");
+
+        assertEquals(testRange, result);
     }
 
     /**
