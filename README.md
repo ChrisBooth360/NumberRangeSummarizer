@@ -76,5 +76,16 @@ Now that basic unit tests have been written, the logic can be written in the imp
 and tested. You can find the logic for the solution in 
 src/main/numberrangersummarizer/NumberRangerSummarizerImpl.java
 
+### Step 5: Optimising the solution and making it more robust
 
+Now that the logic is in place and operating as intended with all the tests passing, 
+it's time to optimise the code and make it more robust. This can be
+done in the following ways:
 
+* **Optimise the logic:** While the solution is of O(n) complexity,
+it can still be improved and made more performant.
+* **Exception Handling:** It's good practice to implement exception handling
+to make the code more robust.
+* **Improve Unit Tests:** Originally only basic tests were written to make
+sure the initial logic is operating as intended. More tests should be added
+to account for any edge cases.

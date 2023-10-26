@@ -16,20 +16,29 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer {
     @Override
     public Collection<Integer> collect(String input) {
 
-        // The numbers in the String are split into an array using the delimiter ",".
-        String[] splitNumberList = input.split(",");
+        // The numbers in the String are split into an array using the delimiter "," followed by zero or more spaces.
+        String[] splitNumberList = input.split(",\\s*");
 
         // A new ArrayList is declared.
         Collection<Integer> numbersList = new ArrayList<>();
 
-        // A for loop iterates through the String array, converts them into integers and adds them to the ArrayList.
-        for(int i = 0; i < splitNumberList.length; i++){
-            int convertedNumber = Integer.parseInt(splitNumberList[i]);
-            numbersList.add(convertedNumber);
+        // An enhanced for loop iterates through the String array, converts them into integers
+        // and adds them to the ArrayList.
+        for (String stringInteger : splitNumberList) {
+
+            // This try-catch block makes sure that the String being parsed is a valid integer, otherwise it ignores it.
+            try{
+
+                int convertedNumber = Integer.parseInt(stringInteger);
+                numbersList.add(convertedNumber);
+
+            } catch (NumberFormatException e){
+                // If the catch block runs, the convertedNumber is not a valid integer and it gets ignored.
+            }
         }
 
-        // The ArrayList is returned.
         return numbersList;
+
     }
 
     /**
