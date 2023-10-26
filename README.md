@@ -67,8 +67,14 @@ that the implemented logic functions correctly and that any future changes
 or updates can be made with confidence in the code's stability.
 
 JUnit is used as the testing framework in this assessment.
+You can find the test file in
+src/test/numberrangersummarizer/NumberRangerSummarizerImplTest.java
 
 ### Step 4: Writing the logic
+
+Now that basic unit tests have been written, the logic can be written in the implementation class
+and tested. You can find the logic for the solution in 
+src/main/numberrangersummarizer/NumberRangerSummarizerImpl.java
 
 
 
