@@ -1,14 +1,47 @@
 # Number Range Summarizer
 
-This is the README for the Impact take home assessment. Below are the instructions 
-and the details on how this task was approached.
+Number Range Summarizer is a **Java program** that takes a String list of numbers separated by commas 
+and produces a comma-delimited list of numbers with sequential numbers grouped into ranges.
+
+This is the README for the Impact take-home assessment. Below are the instructions 
+and the details of how this task was approached.
+
+## Table of Contents
+* [Usage](#usage)
+* [How to Run](#how-to-run)
+* [Assessment Instructions](#assessment-instructions)
+* [Solution](#solution)
+  * [Step 1: Pseudo-code](#step-1-pseudo-code)
+  * [Step 2: File Structure](#step-2-file-structure)
+  * [Step 3: Writing Test Cases](#step-3-writing-test-cases)
+  * [Step 4: Writing logic](#step-4-writing-logic)
+  * [Step 5: Optimization](#step-5-optimization)
+* [Contact Information](#contact-information)
+
+## Usage
+
+This program provides two main functionalities through the NumberRangeSummarizer interface and its implementation:
+
+1. **Collect Numbers:** It converts a string of numbers separated by commas into a Collection of integers, removing duplicates and ignoring non-integer values.
+2. **Summarize Numbers:** It takes a collection of integers and summarizes them by grouping sequential numbers into ranges.
+
+## How to Run
+
+1. Clone the repository
+2. Compile and run the `Main.java` file
+
+```
+src/main/java/numberrangesummarizer/Main.java
+```
 
 ## Assessment Instructions:
-Implement this Interface to produce a comma delimited list of numbers,
+Implement this Interface to produce a comma-delimited list of numbers,
 grouping the numbers into a range when they are sequential.
 
-* Sample Input: "1,3,6,7,8,12,13,14,15,21,22,23,24,31"
-* Result: "1, 3, 6-8, 12-15, 21-24, 31"
+```plaintext
+Sample Input: "1,3,6,7,8,12,13,14,15,21,22,23,24,31"
+Result: "1, 3, 6-8, 12-15, 21-24, 31"
+```
 
 ## Solution
 
@@ -68,15 +101,19 @@ or updates can be made with confidence in the code's stability.
 
 JUnit is used as the testing framework in this assessment.
 You can find the test file in
+```
 src/test/numberrangersummarizer/NumberRangerSummarizerImplTest.java
+```
 
-### Step 4: Writing the logic
+### Step 4: Writing logic
 
 Now that basic unit tests have been written, the logic can be written in the implementation class
-and tested. You can find the logic for the solution in 
+and tested. You can find the logic for the solution in
+```
 src/main/numberrangersummarizer/NumberRangerSummarizerImpl.java
+```
 
-### Step 5: Optimising the solution and making it more robust
+### Step 5: Optimization
 
 Now that the logic is in place and operating as intended with all the tests passing, 
 it's time to optimise the code and make it more robust. This can be
@@ -89,3 +126,6 @@ to make the code more robust.
 * **Improve Unit Tests:** Originally only basic tests were written to make
 sure the initial logic is operating as intended. More tests should be added
 to account for any edge cases.
+
+## Contact Information
+For questions or support, contact me on [chris.booth.ct@gmail.com](mailto:chris.booth.ct@gmail.com)
